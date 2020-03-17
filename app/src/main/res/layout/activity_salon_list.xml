@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SalonListActivity"
+    android:background="@color/grey">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addsalon"
+        android:text="Add new Shop"
+        android:background="@color/dark"
+        android:textColor="@color/whiteColor"
+        android:textSize="22sp"
+        android:onClick="addSalon"
+        android:padding="8dp"
+        android:gravity="center_horizontal"
+
+        ></Button>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:text="All Salon(0)"
+        android:layout_below="@+id/addsalon"
+        android:layout_marginTop="5dp"
+        android:id="@+id/txt_salon_count"
+        android:padding="8dp"
+        android:background="@color/dark"
+        android:gravity="center_horizontal"
+        android:textColor="@color/whiteColor"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_salon"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/txt_salon_count"></androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>
