@@ -36,7 +36,7 @@ public class managerlogin extends AppCompatActivity {
         bt=findViewById(R.id.edt_mLogin);
         tx=findViewById(R.id.edt_msignup);
         forget=findViewById(R.id.forget);
-
+        fauth=FirebaseAuth.getInstance();
         tx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,20 +73,25 @@ public class managerlogin extends AppCompatActivity {
                     return;
                 }
 
-                fauth.signInWithEmailAndPassword(memail,mpass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+               fauth.signInWithEmailAndPassword(memail,mpass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
+
+
                             Common.currentUser=memail;
                             Common.currentPass=mpass;
-                            Common.userid=fauth.getUid();
+                            //Common.userid=fauth.getUid();
+                            startActivity(new Intent(managerlogin.this,mbarberinfo.class));
 
-                        }
+                   }
                         else
                             Toast.makeText(managerlogin.this,"login  is not  successful",Toast.LENGTH_LONG).show();
                     }
                 });
+
+
 
             }
         });

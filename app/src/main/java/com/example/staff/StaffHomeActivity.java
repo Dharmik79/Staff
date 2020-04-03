@@ -108,6 +108,8 @@ public class StaffHomeActivity extends AppCompatActivity implements ITimeSlotLoa
 
                 if (menuItem.getItemId()==R.id.menu_exit)
                     logout();
+                if(menuItem.getItemId()==R.id.profile)
+                    startActivity(new Intent(StaffHomeActivity.this,profile.class));
 
                 return true;
             }
@@ -144,6 +146,11 @@ public class StaffHomeActivity extends AppCompatActivity implements ITimeSlotLoa
             }
         });
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 

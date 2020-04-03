@@ -91,7 +91,7 @@ public class login extends AppCompatActivity  {
         tx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),newsignup.class));
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
             }
         });
         t.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +124,8 @@ public class login extends AppCompatActivity  {
        // }
     }
 
+    @Override
+    public void onBackPressed() {
 
-
+    }
 }

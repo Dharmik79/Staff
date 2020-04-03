@@ -18,10 +18,15 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class newsignup extends AppCompatActivity {
@@ -56,8 +61,8 @@ public class newsignup extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //   if(task.isSuccessful()) {
                         DocumentReference doc;
-                        Common.userid=fauth.getUid();
-                        doc = fstore.collection("All Saloon").document(Common.state_name).collection("Branch").document(Common.selectedSalon.getSalonId()).collection("Barber").document(Common.userid);
+
+                        doc = fstore.collection("All Saloon").document(Common.state_name).collection("Branch").document(Common.selectedSalon.getSalonId()).collection("Barber").document();
                         Map<String, Object> map = new HashMap<>();
                         map.put("username",email);
                         map.put("Rating ",rate );
@@ -67,12 +72,66 @@ public class newsignup extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 //Log.d(TAG, "on sucess: user profile is created for " + userid);
-                                Toast.makeText(newsignup.this,"Registered successfully ",Toast.LENGTH_SHORT).show();
+                              //  Toast.makeText(newsignup.this,"Registered successfully ",Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 //    Log.d(TAG, "On failure :" + e.toString());
+                            }
+                        });
+
+                        CollectionReference doc1;
+
+                        doc1= fstore.collection("Managers");
+                        doc1.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            String s,m,g;
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful())
+                                {
+
+                                    for (DocumentSnapshot documentSnapshot:task.getResult())
+                                    {
+                                        memailclass memail=documentSnapshot.toObject(memailclass.class);
+                                        s= (String)memail.getSalon_name();
+                                        m=(String)memail.getEmail();
+                                        g= Common.selectedSalon.getName();
+                                       // Toast.makeText(newsignup.this,g, Toast.LENGTH_SHORT).show();
+                                        if(s.equals(g))
+                                        {
+
+                                            //Toast.makeText(newsignup.this,m, Toast.LENGTH_SHORT).show();
+                                            DocumentReference doc2;
+                                            doc2=fstore.collection("Managers").document(m).collection("Barber").document();
+                                            Map<String, Object> map2 = new HashMap<>();
+                                            map2.put("username",email);
+                                            map2.put("Rating ",rate );
+                                            map2.put("name",name);
+                                            map2.put("password",password);
+                                            doc2.set(map2).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    startActivity(new Intent(newsignup.this,managerlogin.class));
+                                                   // Toast.makeText(newsignup.this,"Registered managerd successfully",Toast.LENGTH_SHORT).show();
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                   // Toast.makeText(newsignup.this,"Registered not managerd successfully",Toast.LENGTH_SHORT).show();
+
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(newsignup.this,"failed",Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -101,6 +160,7 @@ public class newsignup extends AppCompatActivity {
                         //context.startActivity(new Intent(MySalonAdapterm.this,loginm.class));
                     //    Intent staffsignup=new Intent(context,MainActivity.class);
                      //   context.startActivity(staffsignup);
+
                         startActivity(new Intent(newsignup.this,login.class));
                     }
                     else
