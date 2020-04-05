@@ -76,6 +76,20 @@
                 android:textColorHint="#221F1F"
                 android:textSize="18sp" />
 
+            <TextView
+                android:id="@+id/edt_moveto"
+                android:layout_width="233dp"
+                android:layout_height="41dp"
+
+                android:shadowColor="#75442929"
+                android:text="Staff? Click Here"
+                android:textColor="#131212"
+                android:textColorHighlight="#F3F5EFEF"
+                android:textColorHint="#221F1F"
+                android:textSize="18sp" />
+
+
+
 
         </LinearLayout>
     </ScrollView>

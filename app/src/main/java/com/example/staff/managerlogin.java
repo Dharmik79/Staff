@@ -21,9 +21,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class managerlogin extends AppCompatActivity {
 
-    private EditText email,pass,name,number;
+    private EditText email,pass;
+
     private Button bt;
-    private TextView tx,t,txt1,forget;
+    private TextView tx,t,txt1,forget,moveto;
     FirebaseAuth fauth;
 
 
@@ -35,6 +36,7 @@ public class managerlogin extends AppCompatActivity {
         pass=findViewById(R.id.edt_mpass);
         bt=findViewById(R.id.edt_mLogin);
         tx=findViewById(R.id.edt_msignup);
+        moveto= findViewById(R.id.edt_moveto);
         forget=findViewById(R.id.forget);
         fauth=FirebaseAuth.getInstance();
         tx.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +49,12 @@ public class managerlogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(managerlogin.this,forget.class));
+            }
+        });
+        moveto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(managerlogin.this,login.class));
             }
         });
         bt.setOnClickListener(new View.OnClickListener() {

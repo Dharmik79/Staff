@@ -128,7 +128,7 @@ public class msignup extends AppCompatActivity {
                         doc2.set(map2);
 
 
-                        sendemail();
+                       // sendemail();
                      /*}
                         else
                             Toast.makeText(signup.this,"Register  not successfully",Toast.LENGTH_LONG).show();*/

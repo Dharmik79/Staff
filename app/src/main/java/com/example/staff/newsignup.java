@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class newsignup extends AppCompatActivity {
 
-    private TextInputEditText t1,t2,t3;
+    private TextInputEditText t1,t2,t3,t4;
     private Button b;
     FirebaseAuth fauth;
     FirebaseFirestore fstore;
@@ -44,6 +44,7 @@ public class newsignup extends AppCompatActivity {
         t1=findViewById(R.id.edt_name);
         t2=findViewById(R.id.edt_email);
         t3=findViewById(R.id.edt_password);
+
         b=findViewById(R.id.edt_button);
         fauth=FirebaseAuth.getInstance();
         fstore=FirebaseFirestore.getInstance();
@@ -54,6 +55,7 @@ public class newsignup extends AppCompatActivity {
                 final String email=t2.getText().toString();
                 final String password=t3.getText().toString();
                 final  String name=t1.getText().toString();
+
                 final long rate=0;
 
                 fauth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -65,6 +67,7 @@ public class newsignup extends AppCompatActivity {
                         doc = fstore.collection("All Saloon").document(Common.state_name).collection("Branch").document(Common.selectedSalon.getSalonId()).collection("Barber").document();
                         Map<String, Object> map = new HashMap<>();
                         map.put("username",email);
+
                         map.put("Rating ",rate );
                         map.put("name",name);
                         map.put("password",password);
@@ -107,6 +110,7 @@ public class newsignup extends AppCompatActivity {
                                             Map<String, Object> map2 = new HashMap<>();
                                             map2.put("username",email);
                                             map2.put("Rating ",rate );
+
                                             map2.put("name",name);
                                             map2.put("password",password);
                                             doc2.set(map2).addOnCompleteListener(new OnCompleteListener<Void>() {

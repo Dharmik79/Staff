@@ -39,6 +39,8 @@ class Common {
     public static Calendar bookingDate=Calendar.getInstance();
     public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd_MM_yyyy");
     public static String userid="";
+    public static String Current_userid="";
+    public static String Current_City="";
 
     public static String ConvertTimeSlotToString(int slot) {
         switch (slot)
