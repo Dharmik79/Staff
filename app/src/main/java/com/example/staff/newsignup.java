@@ -100,8 +100,8 @@ public class newsignup extends AppCompatActivity {
                                         s= (String)memail.getSalon_name();
                                         m=(String)memail.getEmail();
                                         g= Common.selectedSalon.getName();
-                                       // Toast.makeText(newsignup.this,g, Toast.LENGTH_SHORT).show();
-                                        if(s.equals(g))
+                                       //Toast.makeText(newsignup.this,s, Toast.LENGTH_SHORT).show();
+                                       if(s.equals(g))
                                         {
 
                                             //Toast.makeText(newsignup.this,m, Toast.LENGTH_SHORT).show();

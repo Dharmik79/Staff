@@ -80,15 +80,15 @@ public class managerNewSalon extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //   if(task.isSuccessful()) {
                         DocumentReference doc;
-                        String userid=fauth.getUid();
+
                         doc = fstore.collection("Managers").document(memail);
                         Map<String, Object> map = new HashMap<>();
-                        map.put("Salon Name", mname);
-                        map.put("phone number", mph);
+                        map.put("Salon_name", mname);
+                        map.put("phone_number", mph);
                         map.put("email", memail);
                         map.put("Password", mpass);
                         map.put("City",city);
-                        map.put("userid",userid);
+
                         doc.set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -106,7 +106,7 @@ public class managerNewSalon extends AppCompatActivity {
                         Map<String, Object> map1 = new HashMap<>();
                         map1.put("name", mname);
                         map1.put("address",maddress);
-                        map1.put("userid",userid);
+
                         doc1.set(map1);
                         DocumentReference doc2;
 

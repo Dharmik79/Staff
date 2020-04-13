@@ -179,22 +179,25 @@ public class StaffHomeActivity extends AppCompatActivity implements ITimeSlotLoa
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful())
                 {
+
                     DocumentSnapshot documentSnapshot=task.getResult();
+                //    Toast.makeText(StaffHomeActivity.this, "Hello", Toast.LENGTH_SHORT).show();
+
                     if (documentSnapshot.exists())
                     {
-                        CollectionReference date=FirebaseFirestore.getInstance().collection("All Saloon").document(Common.state_name).collection("Branch").document(Common.selectedSalon.getSalonId()).collection("Barber").document(barberId).collection(bookDate);
+                         CollectionReference date=FirebaseFirestore.getInstance().collection("All Saloon").document(Common.state_name).collection("Branch").document(Common.selectedSalon.getSalonId()).collection("Barber").document(barberId).collection(bookDate);
                         date.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful())
                                 {
                                     QuerySnapshot querySnapshot=task.getResult();
-                                    if (querySnapshot.isEmpty())
+                                   if (querySnapshot.isEmpty())
                                     {
                                         iTimeSlotLoadListner.onTimeSlotLoadEmpty();
                                     }
-                                    else
-                                    {
+                                   else
+                                   {
                                         List<TimeSlot> timeSlots=new ArrayList<>();
                                         for (QueryDocumentSnapshot document:task.getResult())
                                             timeSlots.add(document.toObject(TimeSlot.class));

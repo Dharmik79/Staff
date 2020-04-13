@@ -97,7 +97,6 @@ public class msignup extends AppCompatActivity {
                         map.put("email", memail);
                         map.put("Password", mpass);
                         map.put("City",mcity);
-                        map.put("userid",userid);
                         doc.set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -117,7 +116,7 @@ public class msignup extends AppCompatActivity {
                         Map<String, Object> map1 = new HashMap<>();
                         map1.put("name", mname);
                        map1.put("address",maddress);
-                       map1.put("userid",userid);
+
                         doc1.set(map1);
                         DocumentReference doc2;
 
@@ -125,16 +124,17 @@ public class msignup extends AppCompatActivity {
                         Map<String, Object> map2 = new HashMap<>();
                         map2.put("name", mcity);
 
+
                         doc2.set(map2);
 
-
+                        startActivity(new Intent(msignup.this,managerlogin.class));
                        // sendemail();
                      /*}
                         else
                             Toast.makeText(signup.this,"Register  not successfully",Toast.LENGTH_LONG).show();*/
                     }
                 });
-                startActivity(new Intent(msignup.this,managerlogin.class));
+
 
 
             }
